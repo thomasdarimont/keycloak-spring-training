@@ -20,8 +20,8 @@
         <module>apps/api</module>
         <module>apps/web</module>
         <module>apps/bff</module>
-        <module>keycloak/extensions</module>
         <module>apps/gateway</module>
+        <module>keycloak/extensions</module>
     </modules>
 
 </project>
