@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api-student
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+# //LABS: Uncomment the following lines
+#          issuer-uri: "http://localhost:9090/auth/realms/labs"
+#          jwk-set-uri: "${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs"
+#          principal-claim-name: preferred_username
+          jws-algorithms: RS256,ES256
+
+training:
+  client-id: "app-api-student"
+
+server:
+  port: 18090

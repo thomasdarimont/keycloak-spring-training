@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | API</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=ADMIN)}"></div>
+
+<div class="jumbotron">
+
+    <h1>Admin API Response</h1>
+
+    <table>
+        <tr th:each="apiEntry : ${apiResponse.entrySet()}">
+            <td th:text="${apiEntry.key}">Key</td>
+            <td th:text="${apiEntry.value}">Value</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

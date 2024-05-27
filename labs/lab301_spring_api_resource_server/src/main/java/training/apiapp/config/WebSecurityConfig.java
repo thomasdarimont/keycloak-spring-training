@@ -31,26 +31,35 @@ class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.sessionManagement(sessions -> {
-            sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        });
+        //LABS: Uncomment the following lines to avoid creating sessions
+//        http.sessionManagement(sessions -> {
+//            sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        });
+
         http.authorizeHttpRequests(requests -> {
             // declarative route configuration
-            requests.requestMatchers("/api/**").authenticated();
+
+            //LABS: Uncomment the following lines to protect /api route
+//            requests.requestMatchers("/api/**").authenticated();
+
             // add additional routes
             requests.anyRequest().denyAll(); //
         });
-        http.oauth2ResourceServer(resourceServer -> {
-            resourceServer.jwt(Customizer.withDefaults());
-        });
+
+
+        //LABS: Uncomment the following lines to enable the oauth2 resource server support
+//        http.oauth2ResourceServer(resourceServer -> {
+//            resourceServer.jwt(Customizer.withDefaults());
+//        });
 
         return http.build();
     }
 
-    @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter(OAuth2ResourceServerProperties properties, @Value("training.client-id") String clientId) {
-        return new KeycloakJwtAuthenticationConverter(properties.getJwt().getPrincipalClaimName(), clientId);
-    }
+    //LABS: Uncomment the following lines to add support for keycloak proprietary token claims
+//    @Bean
+//    public JwtAuthenticationConverter jwtAuthenticationConverter(OAuth2ResourceServerProperties properties, @Value("training.client-id") String clientId) {
+//        return new KeycloakJwtAuthenticationConverter(properties.getJwt().getPrincipalClaimName(), clientId);
+//    }
 
     @Bean
     public JwkSetUriJwtDecoderBuilderCustomizer jwtDecoderBuilderCustomizer() {

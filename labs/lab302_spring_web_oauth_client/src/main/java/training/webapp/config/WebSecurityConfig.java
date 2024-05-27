@@ -27,34 +27,38 @@ class WebSecurityConfig {
     public SecurityFilterChain filterChainOidc(HttpSecurity http, ClientRegistrationRepository clientRegistrationRepository) throws Exception {
 
         http.authorizeHttpRequests(requests -> {
-            requests.requestMatchers("/", "/webjars/**", "/resources/**", "/css/**", "/error").permitAll();
-            requests.requestMatchers("/secure", "/secure/**").authenticated();
+            // //LABS: Uncomment the following lines
+//            requests.requestMatchers("/", "/webjars/**", "/resources/**", "/css/**", "/error").permitAll();
+//            requests.requestMatchers("/secure", "/secure/**").authenticated();
             requests.anyRequest().denyAll();
         });
 
         // We follow the recommendations of OAuth 2.1 and use PKCE also for confidential clients with auth code grant flow
-        http.oauth2Client(o2cc -> {
-            var oauth2AuthRequestResolver = new DefaultOAuth2AuthorizationRequestResolver( //
-                    clientRegistrationRepository, //
-                    OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI //
-            );
-            oauth2AuthRequestResolver.setAuthorizationRequestCustomizer(OAuth2AuthorizationRequestCustomizers.withPkce());
-            o2cc.authorizationCodeGrant(custom -> {
-                custom.authorizationRequestResolver(oauth2AuthRequestResolver);
-            });
-        });
+        // //LABS: Uncomment the following lines to register an oauth2 client with OpenId Connect and PKCE
+//        http.oauth2Client(o2cc -> {
+//            var oauth2AuthRequestResolver = new DefaultOAuth2AuthorizationRequestResolver( //
+//                    clientRegistrationRepository, //
+//                    OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI //
+//            );
+//            oauth2AuthRequestResolver.setAuthorizationRequestCustomizer(OAuth2AuthorizationRequestCustomizers.withPkce());
+//            o2cc.authorizationCodeGrant(custom -> {
+//                custom.authorizationRequestResolver(oauth2AuthRequestResolver);
+//            });
+//        });
 
-        http.oauth2Login(o2login -> {
-            o2login.userInfoEndpoint(customizer -> {
-                customizer.userAuthoritiesMapper(new KeycloakRolesMapper());
-            });
-        });
+        // //LABS: Uncomment the following lines to enable the oauth login and customization of userinfo processing
+//        http.oauth2Login(o2login -> {
+//            o2login.userInfoEndpoint(customizer -> {
+//                customizer.userAuthoritiesMapper(new KeycloakRolesMapper());
+//            });
+//        });
 
 //        http.oidcLogout(Customizer.withDefaults());
 
-        http.logout(logout -> {
-            logout.addLogoutHandler(new KeycloakLogoutHandler());
-        });
+        //LABS: Uncomment the following lines to enable support for Keycloak logout
+//        http.logout(logout -> {
+//            logout.addLogoutHandler(new KeycloakLogoutHandler());
+//        });
 
         return http.build();
     }

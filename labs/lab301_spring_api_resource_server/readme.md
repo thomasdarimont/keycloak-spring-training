@@ -1,17 +1,13 @@
-API Resource Server
+Lab 301: Secure a Spring Boot Resource Server with Keycloak
 ---
 
-A Spring Boot app acting as a resource server which exposes an API.
+# Instructions
 
-# Build 
-
-```
-mvn clean package
-```
+Search for `//LABS:` Instructions then run the following steps.
 
 # Run
 
-Use the `ApiApplication` launch configuration or run the following command in a terminal. 
+Use the `ApiApplicationLabs` launch configuration or run the following command in a terminal.
 
 ```
 java -jar target/*.jar
@@ -23,7 +19,7 @@ java -jar target/*.jar
 
 Request new Access Token for user
 ```bash
-KC_ISSUER="http://localhost:9090/auth/realms/training"
+KC_ISSUER="http://localhost:9090/auth/realms/labs"
 echo "Request new Access Token for user"
 KC_RESPONSE=$( \
     curl \
@@ -31,7 +27,7 @@ KC_RESPONSE=$( \
      -d "grant_type=password" \
      -d "username=user" \
      -d "password=user" \
-     -d "client_id=training-tests" \
+     -d "client_id=labs-tests" \
      -d "client_secret=secret" \
      -d "scope=profile training" \
       $KC_ISSUER/protocol/openid-connect/token
@@ -48,7 +44,7 @@ echo "Call greetings API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
-     http://localhost:8090/api/greetings/me
+     http://localhost:18090/api/greetings/me
 echo
 ```
 
@@ -58,7 +54,7 @@ echo "Call admin API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
-     http://localhost:8090/api/admin
+     http://localhost:18090/api/admin
 ```
 
 Request new Access Token for admin
@@ -70,15 +66,12 @@ KC_RESPONSE=$( \
      -d "grant_type=password" \
      -d "username=admin" \
      -d "password=admin" \
-     -d "client_id=training-tests" \
+     -d "client_id=labs-tests" \
      -d "client_secret=secret" \
      -d "scope=profile training" \
       $KC_ISSUER/protocol/openid-connect/token
 )
-```
 
-Extract Access Token
-```bash
 echo "Extract Access Token"
 KC_ACCESS_TOKEN=$(echo $KC_RESPONSE | jq -r .access_token)
 echo "using KC_ACCESS_TOKEN=$KC_ACCESS_TOKEN"
@@ -90,7 +83,7 @@ echo "Call greetings API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
-     http://localhost:8090/api/greetings/me
+     http://localhost:18090/api/greetings/me
 echo
 ```
 
@@ -100,5 +93,5 @@ echo "Call admin API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
-     http://localhost:8090/api/admin
+     http://localhost:18090/api/admin
 ```

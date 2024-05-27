@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | Userinfo</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=Userinfo)}"></div>
+
+<div class="jumbotron">
+
+    <h1>UserInfo</h1>
+
+    <table>
+        <tr th:each="userInfoEntry : ${userinfo.entrySet()}">
+            <td th:text="${userInfoEntry.key}">Key</td>
+            <td th:text="${userInfoEntry.value}">Value</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

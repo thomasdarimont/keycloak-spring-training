@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | Roles</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=Roles)}"></div>
+
+<div class="jumbotron">
+
+    <h1>Roles</h1>
+
+    <ul>
+        <li th:each="role : ${roles}"><span th:text="${role}"/></li>
+    </ul>
+</div>
+
+</body>
+</html>

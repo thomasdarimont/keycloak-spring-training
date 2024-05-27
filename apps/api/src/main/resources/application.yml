@@ -11,5 +11,8 @@ spring:
           principal-claim-name: preferred_username
           jws-algorithms: RS256,ES256
 
+training:
+  client-id: "app-api"
+
 server:
   port: 8090

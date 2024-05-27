@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | Home</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=home)}"></div>
+
+<div class="jumbotron">
+
+    <h1>Home</h1>
+
+    <h3 class="lead">Welcome <span sec:authentication="name">Anonymous</span></h3>
+</div>
+
+</body>
+</html>

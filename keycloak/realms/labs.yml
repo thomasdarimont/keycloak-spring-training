@@ -1,0 +1,198 @@
+realm: labs
+enabled: true
+displayName: "Keycloak Spring Labs"
+
+smtpServer:
+  host: "mail"
+  port: 1025
+  from: "training@localhost"
+  fromDisplayName: "Labs Training Account"
+  replyTo: "no-reply@acme.test"
+  replyToDisplayName: "Labs Training Support"
+
+clientScopes:
+  - name: training
+    description: "Training Scope"
+    protocol: openid-connect
+    attributes:
+      "include.in.token.scope": "true"
+      "display.on.consent.screen": "true"
+    protocolMappers:
+      - name: "Training: Realm Roles"
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-realm-role-mapper
+        consentRequired: false
+        config:
+          claim.name: "realm_access.roles"
+          id.token.claim: "true"
+          userinfo.token.claim: "false"
+          access.token.claim: "false"
+          multivalued: "true"
+      - name: "Training: Client Roles"
+        protocol: openid-connect
+        protocolMapper: oidc-usermodel-client-role-mapper
+        consentRequired: false
+        config:
+          claim.name: "resource_access.${client_id}.roles"
+          id.token.claim: "true"
+          userinfo.token.claim: "false"
+          access.token.claim: "false"
+          multivalued: "true"
+
+clients:
+  - clientId: labs-keycloak-website-complete
+    protocol: openid-connect
+    name: "Keycloak Website (Complete)"
+    description: "Keycloak Website is a SPA (Complete)"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: true
+    rootUrl: "https://www.keycloak.org/app"
+    baseUrl: "/#url=http://localhost:9090/auth&realm=labs&client=labs-keycloak-website-complete"
+    redirectUris:
+      - "/*"
+      - "https://flowsimulator.pragmaticwebsecurity.com"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "roles"
+      - "profile"
+      - "training"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "pkce.code.challenge.method": "S256"
+      "post.logout.redirect.uris": "/*"
+
+  - clientId: labs-tests
+    protocol: openid-connect
+    name: "Client for Labs"
+    description: ""
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: false
+    directAccessGrantsEnabled: true
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    secret: "secret"
+    #    attributes: { }
+    fullScopeAllowed: true
+    rootUrl: ""
+    baseUrl: ""
+    adminUrl: ""
+    defaultClientScopes:
+      - "email"
+      - "roles"
+      - "profile"
+      - "training"
+    optionalClientScopes:
+      - "phone"
+
+  - clientId: labs-web
+    protocol: openid-connect
+    name: "Classic Spring Boot Web App"
+    description: "Classic Spring Boot Web App with Authorization Code Grant Flow"
+    enabled: true
+    publicClient: false
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    secret: "secret"
+    #    attributes: { }
+    fullScopeAllowed: true
+    rootUrl: "http://localhost:18080"
+    baseUrl: "/"
+    adminUrl: ""
+    redirectUris:
+      - "/login/oauth2/code/keycloak"
+      - "https://flowsimulator.pragmaticwebsecurity.com"
+    defaultClientScopes:
+      - "email"
+      - "roles"
+      - "profile"
+      - "training"
+    optionalClientScopes:
+      - "phone"
+    attributes:
+      "pkce.code.challenge.method": "S256"
+      "post.logout.redirect.uris": "/*"
+
+roles:
+  # Realm specific roles
+  realm:
+    - name: "user"
+      description: "User"
+
+    - name: "admin"
+      description: "Admin"
+
+    - name: "support"
+      description: "Support"
+
+users:
+  - username: user
+    email: user@local
+    firstName: Theo
+    lastName: Tester
+    enabled: true
+    emailVerified: true
+    attributes:
+      locale: [ "en" ]
+      salutation: [ "mr" ]
+      phoneNumber: "+49123456789"
+    credentials:
+      - type: password
+        userLabel: initial
+        value: user
+        temporary: false
+    realmRoles:
+      - "user"
+
+  - username: admin
+    email: admin@local
+    firstName: Arno
+    lastName: Admin
+    enabled: true
+    emailVerified: true
+    attributes:
+      locale: [ "en" ]
+      salutation: [ "mr" ]
+      phoneNumber: "+49123456789"
+    credentials:
+      - type: password
+        userLabel: initial
+        value: admin
+        temporary: false
+    realmRoles:
+      - "admin"
+      - "user"
+
+  - username: support
+    email: support@local
+    firstName: Susi
+    lastName: Support
+    enabled: true
+    emailVerified: true
+    attributes:
+      locale: [ "en" ]
+      salutation: [ "ms" ]
+    credentials:
+      - type: support
+        userLabel: initial
+        value: test
+        temporary: false
+    realmRoles:
+      - "user"
+      - "support"
+
+#

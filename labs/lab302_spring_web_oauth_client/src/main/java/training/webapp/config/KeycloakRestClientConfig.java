@@ -18,6 +18,8 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.util.Assert;
 import org.springframework.web.client.RestClient;
 
 import java.io.IOException;
@@ -29,7 +31,9 @@ class KeycloakRestClientConfig {
     @Qualifier("keycloakRestClient")
     public RestClient keycloakRestClient(OAuth2AuthorizedClientManager authorizedClientManager, ClientRegistrationRepository clientRegistrations) {
 
-        var oauthRequestInterceptor = new OAuth2ClientInterceptor(authorizedClientManager, clientRegistrations.findByRegistrationId("keycloak"));
+        OAuth2ClientInterceptor oauthRequestInterceptor =
+                null; // //LABS: Remove this line to configure an OAuth Interceptor that dynamically obtains access tokens if necessary
+                // new OAuth2ClientInterceptor(authorizedClientManager, clientRegistrations.findByRegistrationId("keycloak"));
 
         return RestClient.builder() //
                 .requestInterceptor(oauthRequestInterceptor) //
