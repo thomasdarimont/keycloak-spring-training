@@ -50,6 +50,9 @@ In the dialog enter the following information:
 - Web Origins: `+`
 - Click "Next"
 
+Client Configuration should look like that now:
+![img_client_config_reference.png](img_client_config_reference.png)
+
 # Login to Client
 
 Go back to the Clients list
