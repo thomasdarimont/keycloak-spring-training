@@ -28,4 +28,12 @@ Import the following configuration into [oauth.tools](https://oauth.tools).
 
 ![img_2.png](img_2.png)
 
-You can now use the example flows
+You can now use the example flows.
+
+Execute the following flows and observe the responses.
+
+- Code Flow
+- Refresh Flow
+- Code Flow with PKCE
+- Client Credentials Grant Flow
+- Resource Owner Password Credentials Flow (ROPC)

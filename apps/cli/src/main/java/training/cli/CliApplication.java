@@ -73,6 +73,8 @@ public class CliApplication {
                     if (deviceFlowResponse.getStatusCode() == HttpStatus.OK) {
                         log.info("Success!");
                         log.info("{}", deviceFlowResponse.getBody());
+
+                        log.info("We can now use the access token to call APIs!");
                     } else {
                         log.info("Problem!");
                         log.info("{}", deviceFlowResponse.getBody());

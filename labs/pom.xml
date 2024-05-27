@@ -18,6 +18,7 @@
     <modules>
         <module>lab301_spring_api_resource_server</module>
         <module>lab302_spring_web_oauth_client</module>
+        <module>lab402_keycloak_extension</module>
     </modules>
 
 </project>

@@ -1,10 +1,13 @@
 spring:
   application:
     name: web
-
   security:
     oauth2:
       client:
+        provider:
+          keycloak:
+            issuerUri: "http://localhost:9090/auth/realms/training"
+            user-name-attribute: "preferred_username"
         registration:
           keycloak:
             client-name: "Keycloak"
@@ -14,7 +17,3 @@ spring:
             authorizationGrantType: "authorization_code"
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope: "openid,profile,email,training"
-        provider:
-          keycloak:
-            issuerUri: "http://localhost:9090/auth/realms/training"
-            user-name-attribute: "preferred_username"

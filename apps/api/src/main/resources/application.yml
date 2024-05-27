@@ -1,7 +1,6 @@
 spring:
   application:
     name: api
-
   security:
     oauth2:
       resourceserver:

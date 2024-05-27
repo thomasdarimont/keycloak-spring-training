@@ -26,32 +26,38 @@ class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChainOidc(HttpSecurity http, ClientRegistrationRepository clientRegistrationRepository) throws Exception {
 
+        // Configure public and protected routes
         http.authorizeHttpRequests(requests -> {
             requests.requestMatchers("/", "/webjars/**", "/resources/**", "/css/**", "/error").permitAll();
             requests.requestMatchers("/secure", "/secure/**").authenticated();
             requests.anyRequest().denyAll();
         });
 
-        // We follow the recommendations of OAuth 2.1 and use PKCE also for confidential clients with auth code grant flow
+        // Configure this app as an OAuth2 Client
         http.oauth2Client(o2cc -> {
             var oauth2AuthRequestResolver = new DefaultOAuth2AuthorizationRequestResolver( //
                     clientRegistrationRepository, //
                     OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI //
             );
+            // We follow the recommendations of OAuth 2.1 and use PKCE also for confidential clients with auth code grant flow
             oauth2AuthRequestResolver.setAuthorizationRequestCustomizer(OAuth2AuthorizationRequestCustomizers.withPkce());
             o2cc.authorizationCodeGrant(custom -> {
                 custom.authorizationRequestResolver(oauth2AuthRequestResolver);
             });
         });
 
+        // Configure to use the UserInfo Endpoint after login
         http.oauth2Login(o2login -> {
             o2login.userInfoEndpoint(customizer -> {
+                // Add special handling to process Keycloak Role Information
                 customizer.userAuthoritiesMapper(new KeycloakRolesMapper());
             });
         });
 
+        // optionally configure back-channel logout
 //        http.oidcLogout(Customizer.withDefaults());
 
+        // We use a custom logout-handler which generates the proper OIDC end_session URL for Keycloak
         http.logout(logout -> {
             logout.addLogoutHandler(new KeycloakLogoutHandler());
         });
