@@ -16,8 +16,8 @@ services:
       - "55432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U keycloak"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 10s
       retries: 5
     volumes:
       - keycloak-db-data:/var/lib/postgresql/data:z
@@ -26,7 +26,7 @@ services:
     image: quay.io/adorsys/keycloak-config-cli:5.12.0-24.0.1
     environment:
       KEYCLOAK_AVAILABILITYCHECK_ENABLED: "true"
-      KEYCLOAK_AVAILABILITYCHECK_TIMEOUT: "120s"
+      KEYCLOAK_AVAILABILITYCHECK_TIMEOUT: "180s"
       # see: https://github.com/adorsys/keycloak-config-cli/blob/v5.0.0/CHANGELOG.md
       IMPORT_FILES_LOCATION: "/config/*" # IMPORT_PATH: "/config"
       IMPORT_CACHE_ENABLED: "true" # IMPORT_FORCE: "false"

@@ -72,8 +72,8 @@ services:
     healthcheck:
       test: ["CMD", "./health_check.sh"]
       interval: 10s
-      timeout: 5s
-      retries: 5
+      timeout: 10s
+      retries: 10
 
     # IntelliJ currently does not support the depends_on condition syntax
     depends_on:
