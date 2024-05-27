@@ -1,4 +1,6 @@
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class start {
@@ -6,6 +8,11 @@ public class start {
     public static void main(String[] args) throws Exception {
 
         System.out.println("### Starting Keycloak System...");
+
+        if (!Files.exists(Path.of("keycloak/extensions/target/extensions.jar"))) {
+            System.out.println("Keycloak extensions.jar not found, please run `mvn clean verify` first.");
+            System.exit(-1);
+        }
 
         var commandLine = new ArrayList<String>();
         commandLine.add("docker");

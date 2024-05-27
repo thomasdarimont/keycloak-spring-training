@@ -18,6 +18,16 @@ The training environment contains the following services:
 | Mail | 1025 (SMTP), 1080 (HTTP)                        | - | Mail Catcher |
 | Redis | 6379 | - | Spring Session Cache Backend |
 
+# Build
+
+Note: It is VERY important to build the environment first. Otherwise you might need to remove dangling files, 
+e.g. `./keycloak/extensions/target/extensions.jar`. 
+
+
+```
+mvn clean verify
+```
+
 # Start
 
 To start the example environment run the following command in the root directory of this project.
@@ -96,11 +106,6 @@ following [dummy spring app from the start.spring.io](https://start.spring.io/#!
 > Then run `mvn clean verify -DskipTests` in the project directory.
 > You can delete the demo project afterwards.
 
-# Build
-
-```
-mvn clean verify
-```
 
 # Contents
 
