@@ -1,0 +1,75 @@
+services:
+  keycloak-db:
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+      POSTGRES_DB: keycloak
+    command:
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+      - "-c"
+      - "pg_stat_statements.track=all"
+      - "-c"
+      - "max_connections=200"
+    ports:
+      - "55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - keycloak-db-data:/var/lib/postgresql/data:z
+
+  keycloak-config:
+    image: quay.io/adorsys/keycloak-config-cli:5.12.0-24.0.1
+    environment:
+      KEYCLOAK_AVAILABILITYCHECK_ENABLED: "true"
+      KEYCLOAK_AVAILABILITYCHECK_TIMEOUT: "120s"
+      # see: https://github.com/adorsys/keycloak-config-cli/blob/v5.0.0/CHANGELOG.md
+      IMPORT_FILES_LOCATION: "/config/*" # IMPORT_PATH: "/config"
+      IMPORT_CACHE_ENABLED: "true" # IMPORT_FORCE: "false"
+      IMPORT_VAR_SUBSTITUTION_ENABLED: "true" # IMPORT_VARSUBSTITUTION: "true"
+      IMPORT_VALIDATE: "true"
+
+      # See https://github.com/adorsys/keycloak-config-cli#log-level
+      #LOGGING_LEVEL_KEYCLOAK_CONFIG_CLI: "DEBUG"
+      # Note: the above does not work but _KCC does
+      LOGGING_LEVEL_KCC: "DEBUG"
+
+      # Veeeeery verbose HTTP log!
+      #LOGGING_LEVEL_HTTP: "DEBUG"
+
+      #LOGGING_LEVEL_ROOT: "DEBUG"
+      LOGGING_LEVEL_ROOT: "INFO"
+
+      KEYCLOAK_URL: "http://keycloak:9090/auth"
+      KEYCLOAK_USER: "admin"
+      KEYCLOAK_PASSWORD: "admin"
+    volumes:
+      - ./keycloak/realms:/config:z
+    depends_on:
+      keycloak:
+        condition: service_healthy
+
+  # Web Interface: http://localhost:1080/mail
+  # Web API: https://github.com/maildev/maildev/blob/master/docs/rest.md
+  mail:
+    image: maildev/maildev:2.1.0 #@sha256:57e0b96fefb5dfeda8b39fb04c666ee7eef7be899ac8ea0e4d983bb0ea64aaff
+    environment:
+      MAILDEV_BASE_PATHNAME: "/mail"
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  redis:
+    image: redis:6.2.6-alpine3.15
+    ports:
+      - '6379:6379'
+    #  --requirepass redispass
+    command: redis-server --save 20 1 --loglevel warning
+
+volumes:
+  keycloak-db-data:
+    name: keycloak-springio-db-data

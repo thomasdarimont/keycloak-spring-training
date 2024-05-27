@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | Userinfo</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=token)}"></div>
+
+<div class="jumbotron">
+
+    <h1>Access Token</h1>
+
+    <pre th:text="${accessTokenValue}">
+    </pre>
+
+    <div><h2>Header</h2>
+        <pre th:text="${accessTokenHeaderDecoded}">
+    </pre>
+    </div>
+
+    <div><h2>Payload</h2>
+        <pre th:text="${accessTokenPayloadDecoded}">
+    </pre>
+    </div>
+
+    <div><h2>Signature</h2>
+        <pre th:text="${accessTokenSignature}">
+    </pre>
+    </div>
+</div>
+
+</body>
+</html>

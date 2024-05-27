@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path: /bff
+  port: 8070
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: info
+        security: debug
+    training:
+      bff: debug
+
+spring:
+  application:
+    name: bff
+
+  thymeleaf:
+    cache: false
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuerUri: http://localhost:9090/auth/realms/training
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: 'training-bff'
+            client-secret: 'secret'
+            client-authentication-method: client_secret_post
+            authorizationGrantType: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope: openid
+
+  data:
+    redis:
+      client-name: "acme-bff"
+
+  session:
+    timeout: 30m

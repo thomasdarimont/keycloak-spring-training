@@ -1,0 +1,85 @@
+services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.4
+    environment:
+
+      # Keycloak Admin User
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-db
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloak
+      KC_DB_SCHEMA: public
+      # See postgres JDBC URL parameters: https://jdbc.postgresql.org/documentation/head/connect.html
+      KC_DB_URL_PROPERTIES: "?ApplicationName=keycloak"
+
+      # Feature config, see: https://www.keycloak.org/server/features
+      KC_FEATURES: preview
+
+      # Disable specific features
+      #      KC_FEATURES_DISABLED: "device-flow"
+
+      # Logging, see: https://www.keycloak.org/server/logging
+      KC_LOG_LEVEL: INFO
+
+      # External frontend hostname, see: https://www.keycloak.org/server/hostname
+      KC_HOSTNAME: localhost
+      KC_HTTP_PORT: "9090"
+      KC_HTTP_ENABLED: "true"
+      KC_HTTP_RELATIVE_PATH: "/auth"
+
+      KC_METRICS_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+
+      # Log Keycloak success events to the console
+      KC_SPI_EVENTS_LISTENER_JBOSS_LOGGING_SUCCESS_LEVEL: "info"
+      KC_SPI_EVENTS_LISTENER_JBOSS_LOGGING_ERROR_LEVEL: "warn"
+
+      # Additional JVM options
+      JAVA_OPTS_APPEND: "--show-version"
+
+      # Enable Remote Debugging
+      DEBUG: "true"
+      DEBUG_PORT: "*:18787"
+
+    volumes:
+      # Keep keycloak data persistent
+      - keycloak-data:/opt/keycloak/data:z
+      # Add custom Docker health check
+      - ./keycloak/health_check.sh:/health_check.sh:z
+      # Add custom Keycloak Themes
+      - ./keycloak/themes:/opt/keycloak/themes:z
+      # Add custom Keycloak Extensions
+      - ./keycloak/extensions/target/extensions.jar:/opt/keycloak/providers/extensions.jar:z
+
+      #    extra_hosts:
+      # ${DOCKER_HOST_IP:-172.17.0.1} is host.docker.internal
+      # - "account-service:${DOCKER_HOST_IP:-172.17.0.1}"
+
+    ports:
+      - 9090:9090   # HTTP
+      - 9443:9443   # HTTPS
+      - 18787:18787 # Java Remote Debug
+
+    command:
+      - "--verbose"
+      - "start-dev"
+
+    healthcheck:
+      test: ["CMD", "./health_check.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    # IntelliJ currently does not support the depends_on condition syntax
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+
+volumes:
+  keycloak-data:
+    name: keycloak-springio-data

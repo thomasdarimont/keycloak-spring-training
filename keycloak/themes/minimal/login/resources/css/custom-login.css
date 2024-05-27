@@ -1,0 +1,45 @@
+:root {
+    --color-deep-blue: 18, 16, 48;
+}
+
+.login-pf body {
+    /*background: #ffa93b;*/
+    background: rgb(var(--color-deep-blue));
+}
+
+.card-pf {
+    border-radius: 20px;
+    border: 2px;
+}
+
+#kc-header-wrapper {
+    text-transform: none;
+}
+
+.login-pf-page .login-pf-header h1 {
+    text-align: left;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+.pf-c-button.pf-m-primary {
+    /*background-color: #faa020;*/
+    background-color: rgb(var(--color-deep-blue));
+}
+
+/*.custom-form-group {*/
+/*    margin-bottom: 30px;*/
+/*}*/
+
+#kc-header-wrapper {
+    /*background-image: url("../img/logo.svg");*/
+    /*background-image: url("https://2024.springio.net/images/hero-bg-2000.png");*/
+    background-image: url("../img/springio2024-hero-bg-2000.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: auto 200px;
+    padding-top: 140px;
+    margin-top: 30px;
+}

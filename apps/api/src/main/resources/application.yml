@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: api
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/auth/realms/training"
+          jwk-set-uri: "${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs"
+          principal-claim-name: preferred_username
+          jws-algorithms: RS256,ES256
+
+server:
+  port: 8090
