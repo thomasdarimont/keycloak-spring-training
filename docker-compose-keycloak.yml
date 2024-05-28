@@ -58,7 +58,7 @@ services:
       - ./keycloak/extensions/target/extensions.jar:/opt/keycloak/providers/extensions.jar:z
 
 # //LABS: Uncomment the following line for lab 402
-#      - ./labs/lab402_keycloak_extension/target/extensions-lab.jar:/opt/keycloak/providers/extensions-lab.jar:z
+#      - ./student/labs/lab402_keycloak_extension/target/extensions-lab.jar:/opt/keycloak/providers/extensions-lab.jar:z
 
       #    extra_hosts:
       # ${DOCKER_HOST_IP:-172.17.0.1} is host.docker.internal
