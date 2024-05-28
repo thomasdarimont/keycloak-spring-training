@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestClient;
+import training.webapp.support.oauth.HasScope;
 
 import java.util.Base64;
 import java.util.Map;
@@ -32,6 +33,7 @@ class PageController {
         return "index";
     }
 
+    @HasScope("training") // Support for annotation parameters new in Spring Security 6.3
     @GetMapping("/secure/home")
     public String home(Model model) {
         return "home";
