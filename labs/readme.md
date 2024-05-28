@@ -3,6 +3,8 @@ Keycloak Spring Training Labs
 
 # Importing
 
+IMPORTANT copy this labs folder to the student directory in the root folder before proceeding with the labs.
+
 In IntelliJ click on the [pom.xml](./pom.xml) and choose `Add as Maven project`.
 
 # Build

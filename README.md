@@ -137,7 +137,15 @@ The [keycloak](./keycloak) folder contains all customizations we want to add to 
 
 ## Lab Exercises
 
-The Lab exercises can be found in the [labs](./labs) folder.
+The templates for Lab exercises can be found in the [labs](./labs) folder.
+
+To work in the labs, copy the whole `labs` folder into the student folder
+
+![img_student_folder.png](img_student_folder.png)
+
+## Student folder
+
+This folder is NOT tracked by git and should be used for the exercises.
 
 ## OAuth / OIDC Demos
 
