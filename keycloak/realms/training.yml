@@ -168,6 +168,37 @@ clients:
     optionalClientScopes:
       - "phone"
 
+  - clientId: training-spa
+    protocol: openid-connect
+    name: "SPA Example App"
+    description: "SPA Example App Description"
+    enabled: true
+    publicClient: true
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: false
+    # Show client in account-console
+    alwaysDisplayInConsole: true
+    serviceAccountsEnabled: false
+    #    attributes: { }
+    fullScopeAllowed: true
+    rootUrl: "http://localhost:9080/spa"
+    baseUrl: "/?realm=training&show=profile,token,idToken,userinfo,updatepassword,account,logout"
+    adminUrl: ""
+    redirectUris:
+      - "/*"
+    webOrigins:
+      - "+"
+    defaultClientScopes:
+      - "email"
+      - "roles"
+      - "profile"
+    optionalClientScopes:
+      - "phone"
+      - "training"
+    attributes:
+      "pkce.code.challenge.method": "S256"
+      "post.logout.redirect.uris": "+"
+
 ### example client configurations
 
   - clientId: acme-client-spa-app

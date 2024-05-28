@@ -14,14 +14,15 @@ The training environment contains the following services:
 | BFF                        | 8070 (HTTP)                                     | http://localhost:8070/bff/ | Example OpenID Connect RP             
  Backend-for-Frontend (BFF) |
 | Gateway                    | 8050 (HTTP)                                     | http://localhost:8050/     | Example API Gateway                   |
-| Postgresql | 55432 | - | Database |
-| Mail | 1025 (SMTP), 1080 (HTTP)                        | - | Mail Catcher |
-| Redis | 6379 | - | Spring Session Cache Backend |
+| Postgresql                 | 55432                                           | -                          | Database                              |
+| Mail                       | 1025 (SMTP), 1080 (HTTP)                        | -                          | Mail Catcher                          |
+| Redis                      | 6379                                            | -                          | Spring Session Cache Backend          |
+| Apache HTTPD               | 9080                                            | http://localhost:9080/spa  | Web Server with SPA Example App       |
 
 # Build
 
-Note: It is VERY important to build the environment first. Otherwise you might need to remove dangling files, 
-e.g. `./keycloak/extensions/target/extensions.jar`. 
+Note: It is VERY important to build the environment first. Otherwise you might need to remove dangling files,
+e.g. `./keycloak/extensions/target/extensions.jar`.
 
 
 ```
@@ -110,7 +111,6 @@ following [dummy spring app from the start.spring.io](https://start.spring.io/#!
 > Then run `mvn clean verify -DskipTests` in the project directory.
 > You can delete the demo project afterwards.
 
-
 # Contents
 
 ## Keycloak Customizations
@@ -131,8 +131,10 @@ The [keycloak](./keycloak) folder contains all customizations we want to add to 
 
 - [API](./apps/api) which acts as a OAuth Resource Server.
 - [WEB](./apps/web), a Classic Web App that acts as an OpenID Connection relying party client with the Code Flow + PKCE.
-- [BFF](./apps/bff), a Spring Boot web app that implements the Backend-for-Frontend (BFF) pattern with Spring OAuth Client and Spring Session.
-- [Gateway](./apps/gateway), a Spring Boot App that uses Spring Cloud Gateway and acts as a Resource Server and OAuth Client
+- [BFF](./apps/bff), a Spring Boot web app that implements the Backend-for-Frontend (BFF) pattern with Spring OAuth
+  Client and Spring Session.
+- [Gateway](./apps/gateway), a Spring Boot App that uses Spring Cloud Gateway and acts as a Resource Server and OAuth
+  Client
 - [CLI](./apps/cli), a Command-line interface (CLI) Spring Boot App which uses the OAuth Device Flow.
 
 ## Lab Exercises

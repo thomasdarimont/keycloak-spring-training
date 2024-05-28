@@ -70,6 +70,13 @@ services:
     #  --requirepass redispass
     command: redis-server --save 20 1 --loglevel warning
 
+  webserver:
+    image: httpd:2.4.51-bullseye
+    volumes:
+      - ./apps/spa:/usr/local/apache2/htdocs/spa:z
+    ports:
+      - "9080:80"
+
 volumes:
   keycloak-db-data:
     name: keycloak-springio-db-data
