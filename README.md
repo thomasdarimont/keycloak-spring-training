@@ -38,7 +38,11 @@ java start.java
 
 ## Keycloak
 
-The Keycloak Admin console can be access via [Keycloak Admin Console (local)](http://localhost:9090/auth/admin).
+The Keycloak Admin console can be accessed via [Keycloak Admin Console (local)](http://localhost:9090/auth/admin).
+
+Keycloak URL: http://localhost:9090/auth
+
+### User Accounts
 
 The following user account can be used to access the admin console:
 > *Admin Account*
@@ -121,16 +125,21 @@ The [keycloak](./keycloak) folder contains all customizations we want to add to 
 
 > The [requests](./requests) folder contains a few http client based example requests for some OAuth flows.
 
-## Spring Boot Example Applications
+## Example Applications
 
 > This project contains the following Spring Boot based example applications:
 
 - [API](./apps/api) which acts as a OAuth Resource Server.
 - [WEB](./apps/web), a Classic Web App that acts as an OpenID Connection relying party client with the Code Flow + PKCE.
-- [BFF](./apps/bff), a Spring Boot web app that implements the Backend-for-Frontend (BFF) pattern.
+- [BFF](./apps/bff), a Spring Boot web app that implements the Backend-for-Frontend (BFF) pattern with Spring OAuth Client and Spring Session.
+- [Gateway](./apps/gateway), a Spring Boot App that uses Spring Cloud Gateway and acts as a Resource Server and OAuth Client
 - [CLI](./apps/cli), a Command-line interface (CLI) Spring Boot App which uses the OAuth Device Flow.
 
-# OAuth / OIDC Demos
+## Lab Exercises
+
+The Lab exercises can be found in the [labs](./labs) folder.
+
+## OAuth / OIDC Demos
 
 > Public Keycloak Test instance
 > Link: https://lemur-6.cloud-iam.com/auth/realms/idt-training/account/
