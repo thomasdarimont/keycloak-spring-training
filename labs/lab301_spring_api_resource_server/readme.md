@@ -38,17 +38,20 @@ KC_ACCESS_TOKEN=$(echo $KC_RESPONSE | jq -r .access_token)
 echo "using KC_ACCESS_TOKEN=$KC_ACCESS_TOKEN"
 ```
 
-Call greetings API endpoint with Access Token
+> Note: You can inspect the token by pasting it into the JWT decoder form at https://jwt.io.
+
+Call greetings API endpoint with the user Access Token
 ```bash
 echo "Call greetings API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
      http://localhost:18090/api/greetings/me
-echo
 ```
 
-Call admin API endpoint with Access Token
+Call admin API endpoint with the user Access Token.
+Note that this call fails due to insufficient privileges for the user.
+
 ```bash
 echo "Call admin API endpoint with Access Token"
 curl -s \
@@ -77,17 +80,17 @@ KC_ACCESS_TOKEN=$(echo $KC_RESPONSE | jq -r .access_token)
 echo "using KC_ACCESS_TOKEN=$KC_ACCESS_TOKEN"
 ```
 
-Call greetings API endpoint with Access Token
+Call greetings API endpoint with th Access Token
 ```bash
 echo "Call greetings API endpoint with Access Token"
 curl -s \
      -v \
      -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
      http://localhost:18090/api/greetings/me
-echo
 ```
 
-Call admin API endpoint with Access Token
+Call admin API endpoint with Access Token. This time the call succeeded because the admin
+user has the proper role to access the admin endpoint.
 ```bash
 echo "Call admin API endpoint with Access Token"
 curl -s \
