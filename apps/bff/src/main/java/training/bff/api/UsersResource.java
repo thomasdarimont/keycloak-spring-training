@@ -3,6 +3,8 @@ package training.bff.api;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,11 @@ class UsersResource {
 
     public UsersResource(@Qualifier("oauth") RestTemplate oauthRestTemplate) {
         this.oauthRestTemplate = oauthRestTemplate;
+    }
+
+    @GetMapping("/me/token")
+    public String token(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+        return client.getAccessToken().getTokenValue();
     }
 
     @GetMapping("/me/claims")
