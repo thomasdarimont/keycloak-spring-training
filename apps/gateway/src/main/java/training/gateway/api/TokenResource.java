@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+
 @RestController
 class TokenResource {
 
@@ -16,7 +18,7 @@ class TokenResource {
     }
 
     @GetMapping("/")
-    public Mono<String> index(WebSession session) {
-        return Mono.just(session.getId());
+    public Mono<Object> index(WebSession session) {
+        return Mono.just(Map.of("session_id", session.getId()));
     }
 }
