@@ -14,31 +14,24 @@
 
     <properties>
 
-        <!-- Maven -->
-        <java.version>17</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <!-- Dependencies -->
-        <keycloak.version>24.0.5</keycloak.version>
+        <keycloak.version>25.0.4</keycloak.version>
 
-        <resteasy.version>6.2.7.Final</resteasy.version>
         <httpcomponents-httpclient.version>4.5.14</httpcomponents-httpclient.version>
 
         <!-- Testing -->
-        <junit-jupiter.version>5.9.2</junit-jupiter.version>
-        <assertj-core.version>3.24.2</assertj-core.version>
-        <testcontainers-keycloak.version>3.3.0</testcontainers-keycloak.version>
+        <junit-jupiter.version>5.10.3</junit-jupiter.version>
+        <assertj-core.version>3.26.3</assertj-core.version>
+        <testcontainers-keycloak.version>3.4.0</testcontainers-keycloak.version>
         <logback.version>1.5.6</logback.version>
 
         <!-- Tooling -->
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <auto-service.version>1.1.1</auto-service.version>
 
-        <!-- Plugin -->
-        <maven-failsafe-plugin.version>3.2.5</maven-failsafe-plugin.version>
-        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <!-- Plugins -->
+        <maven-failsafe-plugin.version>3.5.0</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
     </properties>
 
 
@@ -82,14 +75,6 @@
         </dependency>
 
         <dependency>
-            <!-- custom user storage -->
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-model-legacy</artifactId>
-            <version>${keycloak.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <!-- to ease debugging -->
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-model-infinispan</artifactId>
@@ -97,19 +82,19 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-multipart-provider</artifactId>
-            <version>${resteasy.version}</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.resteasy</groupId>-->
+<!--            <artifactId>resteasy-multipart-provider</artifactId>-->
+<!--            <version>${resteasy.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson2-provider</artifactId>
-            <version>${resteasy.version}</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.resteasy</groupId>-->
+<!--            <artifactId>resteasy-jackson2-provider</artifactId>-->
+<!--            <version>${resteasy.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -166,12 +151,12 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <version>${resteasy.version}</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jboss.resteasy</groupId>-->
+<!--            <artifactId>resteasy-client</artifactId>-->
+<!--            <version>${resteasy.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>ch.qos.logback</groupId>

@@ -17,3 +17,6 @@ spring:
             authorizationGrantType: "authorization_code"
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope: "openid,profile,email,training"
+#server:
+#  # to prevent error: Request header is too large
+#  max-http-request-header-size: 128KB

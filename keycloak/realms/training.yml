@@ -214,7 +214,7 @@ clients:
     serviceAccountsEnabled: false
     fullScopeAllowed: false
     rootUrl: "https://www.keycloak.org/app"
-    baseUrl: "/#url=https://id.acme.test:8443/auth&realm=acme-client-examples&client=acme-client-spa-app"
+    baseUrl: "/#url=http://localhost:9090/auth&realm=training&client=acme-client-spa-app"
     adminUrl: ""
     redirectUris:
       - "/*"

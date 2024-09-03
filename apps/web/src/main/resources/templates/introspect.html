@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <title>Web UI | Introspection</title>
+</head>
+<body class="container">
+<script>
+</script>
+
+<div th:replace="~{fragments::navbar2(current=introspect)}"></div>
+
+<div class="jumbotron">
+
+    <h1>Introspection Response</h1>
+
+    <pre th:text="${introspectionResponse}">
+    </pre>
+</div>
+
+</body>
+</html>

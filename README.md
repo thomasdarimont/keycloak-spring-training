@@ -5,19 +5,19 @@ Spring Keycloak Training Materials
 
 The training environment contains the following services:
 
-| Service                    | Port(s)                                         | URL                        | Purpose                               |
-|----------------------------|-------------------------------------------------|----------------------------|---------------------------------------|
-| Keycloak                   | 9090 (HTTP), 9443 (HTTPS), 18787 (Remote Debug) | http://localhost:9090/auth | OAuth Authorization Server            
+| Service                    | Port(s)                                                            | URL                        | Purpose                               |
+|----------------------------|--------------------------------------------------------------------|----------------------------|---------------------------------------|
+| Keycloak                   | 9090 (HTTP), 9443 (HTTPS), 9000 (Management), 18787 (Remote Debug) | http://localhost:9090/auth | OAuth Authorization Server            
  /OpenID Provider           |
-| API                        | 8090 (HTTP)                                     | http://localhost:8090/     | Example API Resource Server           |
-| Web                        | 8080 (HTTP)                                     | http://localhost:8080/     | Example OpenID Connect RP Classic Web 
-| BFF                        | 8070 (HTTP)                                     | http://localhost:8070/bff/ | Example OpenID Connect RP             
+| API                        | 8090 (HTTP)                                                        | http://localhost:8090/     | Example API Resource Server           |
+| Web                        | 8080 (HTTP)                                                        | http://localhost:8080/     | Example OpenID Connect RP Classic Web 
+| BFF                        | 8070 (HTTP)                                                        | http://localhost:8070/bff/ | Example OpenID Connect RP             
  Backend-for-Frontend (BFF) |
-| Gateway                    | 8050 (HTTP)                                     | http://localhost:8050/     | Example API Gateway                   |
-| Postgresql                 | 55432                                           | -                          | Database                              |
-| Mail                       | 1025 (SMTP), 1080 (HTTP)                        | -                          | Mail Catcher                          |
-| Redis                      | 6379                                            | -                          | Spring Session Cache Backend          |
-| Apache HTTPD               | 9080                                            | http://localhost:9080/spa  | Web Server with SPA Example App       |
+| Gateway                    | 8050 (HTTP)                                                        | http://localhost:8050/     | Example API Gateway                   |
+| Postgresql                 | 55432                                                              | -                          | Database                              |
+| Mail                       | 1025 (SMTP), 1080 (HTTP)                                           | -                          | Mail Catcher                          |
+| Redis                      | 6379                                                               | -                          | Spring Session Cache Backend          |
+| Apache HTTPD               | 9080                                                               | http://localhost:9080/spa  | Web Server with SPA Example App       |
 
 # Build
 
@@ -95,9 +95,9 @@ To further speed up the labs, you can optionally do the following:
 > Preload Docker images
 
 ```bash
-docker pull quay.io/keycloak/keycloak:24.0.5
+docker pull quay.io/keycloak/keycloak:25.0.4
 docker pull postgres:16.3
-docker pull quay.io/adorsys/keycloak-config-cli:5.12.0-24.0.1
+docker pull quay.io/adorsys/keycloak-config-cli:latest-25
 docker pull maildev/maildev:2.1.0
 docker pull redis:6.2.6-alpine3.15
 ```

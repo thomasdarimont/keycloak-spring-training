@@ -1,7 +1,7 @@
 services:
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.5
+    image: quay.io/keycloak/keycloak:25.0.4
     environment:
 
       # Keycloak Admin User
@@ -67,17 +67,18 @@ services:
     ports:
       - 9090:9090   # HTTP
       - 9443:9443   # HTTPS
+      - 9000:9000   # Management
       - 18787:18787 # Java Remote Debug
 
     command:
       - "--verbose"
       - "start-dev"
 
-    healthcheck:
-      test: ["CMD", "./health_check.sh"]
-      interval: 10s
-      timeout: 10s
-      retries: 10
+#    healthcheck:
+#      test: ["CMD", "./health_check.sh"]
+#      interval: 10s
+#      timeout: 10s
+#      retries: 10
 
     # IntelliJ currently does not support the depends_on condition syntax
     depends_on:
