@@ -63,6 +63,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/secure/introspect" th:classappend="${current == 'introspection' ? 'active' : ''}">
+                            Introspect <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/secure/roles" th:classappend="${current == 'Roles' ? 'active' : ''}">
                             Roles <span class="sr-only">(current)</span>
                         </a>

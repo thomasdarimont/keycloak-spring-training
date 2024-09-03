@@ -3,13 +3,16 @@ package training.webapp.ui;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestClient;
 import training.webapp.support.oauth.HasScope;
@@ -60,6 +63,35 @@ class PageController {
         return "token";
     }
 
+    @GetMapping("/secure/introspect")
+    public String introspect(Model model, @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) throws Exception {
+        OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
+        String tokenValue = accessToken.getTokenValue();
+
+        ClientRegistration clientRegistration = authorizedClient.getClientRegistration();
+        String clientId = clientRegistration.getClientId();
+        String clientSecret = clientRegistration.getClientSecret();
+
+        String introspectionEndpoint = (String) clientRegistration.getProviderDetails().getConfigurationMetadata().get("introspection_endpoint");
+
+        var restClient = RestClient.builder().build();
+        var formData = new LinkedMultiValueMap<String, String>();
+        formData.add("client_id", clientId);
+        formData.add("client_secret", clientSecret);
+        formData.add("token", tokenValue);
+        formData.add("token_hint", "access_token");
+        var responseBodyString = restClient.post() //
+                .uri(introspectionEndpoint) //
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED) //
+                .body(formData) //
+                .retrieve() //
+                .body(String.class);
+
+        model.addAttribute("introspectionResponse", jsonPrettyPrint(responseBodyString));
+
+        return "introspect";
+    }
+
     @GetMapping("/secure/roles")
     public String roles(Model model, Authentication auth) {
         model.addAttribute("roles", auth.getAuthorities());
@@ -69,7 +101,7 @@ class PageController {
     @GetMapping("/secure/api")
     public String api(Model model) {
         try {
-            Map response = keycloakRestClient.get().uri("http://localhost:8090/api/greetings/me").retrieve().body(Map.class);
+            var response = keycloakRestClient.get().uri("http://localhost:8090/api/greetings/me").retrieve().body(Map.class);
             model.addAttribute("apiResponse", response);
         } catch (Exception ex) {
             model.addAttribute("apiResponse", Map.of("error", ex.getMessage()));
@@ -81,7 +113,7 @@ class PageController {
     @GetMapping("/secure/api/admin")
     public String adminApi(Model model) {
         try {
-            Map response = keycloakRestClient.get().uri("http://localhost:8090/api/admin").retrieve().body(Map.class);
+            var response = keycloakRestClient.get().uri("http://localhost:8090/api/admin").retrieve().body(Map.class);
             model.addAttribute("apiResponse", response);
         } catch (Exception ex) {
             model.addAttribute("apiResponse", Map.of("error", ex.getMessage()));
@@ -94,8 +126,7 @@ class PageController {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             Object o = objectMapper.readValue(json, Object.class);
-            String pretty = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
-            return pretty;
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
