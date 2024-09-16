@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependencies -->
-        <keycloak.version>24.0.5</keycloak.version>
+        <keycloak.version>25.0.5</keycloak.version>
 
         <resteasy.version>6.2.7.Final</resteasy.version>
         <httpcomponents-httpclient.version>4.5.14</httpcomponents-httpclient.version>
@@ -25,11 +25,11 @@
         <!-- Testing -->
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <assertj-core.version>3.24.2</assertj-core.version>
-        <testcontainers-keycloak.version>3.3.0</testcontainers-keycloak.version>
+        <testcontainers-keycloak.version>3.4.0</testcontainers-keycloak.version>
         <logback.version>1.4.5</logback.version>
 
         <!-- Tooling -->
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <auto-service.version>1.1.1</auto-service.version>
 
         <!-- Plugin -->
@@ -245,7 +245,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
                 <configuration>
                     <archive>
                         <manifest>
