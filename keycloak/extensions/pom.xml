@@ -15,7 +15,7 @@
     <properties>
 
         <!-- Dependencies -->
-        <keycloak.version>25.0.4</keycloak.version>
+        <keycloak.version>25.0.5</keycloak.version>
 
         <httpcomponents-httpclient.version>4.5.14</httpcomponents-httpclient.version>
 

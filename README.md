@@ -95,7 +95,7 @@ To further speed up the labs, you can optionally do the following:
 > Preload Docker images
 
 ```bash
-docker pull quay.io/keycloak/keycloak:25.0.4
+docker pull quay.io/keycloak/keycloak:25.0.5
 docker pull postgres:16.3
 docker pull quay.io/adorsys/keycloak-config-cli:latest-25
 docker pull maildev/maildev:2.1.0
