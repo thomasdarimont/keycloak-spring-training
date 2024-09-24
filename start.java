@@ -26,6 +26,8 @@ public class start {
         System.out.printf("Running command: %s%n", String.join(" ", commandLine));
 
         var pb = new ProcessBuilder(commandLine);
+        // disable docker compose menu in shell
+        pb.environment().put("COMPOSE_MENU", "false");
         pb.directory(new File("."));
         pb.inheritIO();
         var process = pb.start();
