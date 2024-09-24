@@ -53,9 +53,12 @@ services:
       - ./keycloak/health_check.sh:/health_check.sh:z
       # Add custom Keycloak Themes
       - ./keycloak/themes/minimal:/opt/keycloak/themes/minimal:z
-      - ./labs/lab401_keycloak_theme/lab:/opt/keycloak/themes/lab:z
+#      - ./labs/lab401_keycloak_theme/lab:/opt/keycloak/themes/lab:z
       # Add custom Keycloak Extensions
       - ./keycloak/extensions/target/extensions.jar:/opt/keycloak/providers/extensions.jar:z
+
+# //LABS: Uncomment the following line for lab 401
+      - ./student/labs/lab401_keycloak_theme/lab:/opt/keycloak/themes/lab:z
 
 # //LABS: Uncomment the following line for lab 402
 #      - ./student/labs/lab402_keycloak_extension/target/extensions-lab.jar:/opt/keycloak/providers/extensions-lab.jar:z

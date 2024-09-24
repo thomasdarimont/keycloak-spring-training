@@ -2,13 +2,13 @@
 <html>
     <body>
         <header>
-Custom Header
+<h1>Custom Header</h1>
         </header>
         <main>
 <#nested>
         </main>
         <footer>
-Custom Footer
+<h2>Custom Footer</h2>
         </footer>
     </body>
 </html>

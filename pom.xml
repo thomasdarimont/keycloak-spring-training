@@ -17,12 +17,12 @@
     </properties>
 
     <modules>
+        <module>keycloak/extensions</module>
         <module>apps/cli</module>
         <module>apps/api</module>
         <module>apps/web</module>
         <module>apps/bff</module>
         <module>apps/gateway</module>
-        <module>keycloak/extensions</module>
     </modules>
 
 </project>

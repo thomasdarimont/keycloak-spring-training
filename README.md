@@ -1,29 +1,26 @@
-Spring Keycloak Training Materials
+Keycloak JumpStart Training Materials
 ---
 
 # Environment
 
 The training environment contains the following services:
 
-| Service                    | Port(s)                                                            | URL                        | Purpose                               |
-|----------------------------|--------------------------------------------------------------------|----------------------------|---------------------------------------|
-| Keycloak                   | 9090 (HTTP), 9443 (HTTPS), 9000 (Management), 18787 (Remote Debug) | http://localhost:9090/auth | OAuth Authorization Server            
- /OpenID Provider           |
-| API                        | 8090 (HTTP)                                                        | http://localhost:8090/     | Example API Resource Server           |
-| Web                        | 8080 (HTTP)                                                        | http://localhost:8080/     | Example OpenID Connect RP Classic Web 
-| BFF                        | 8070 (HTTP)                                                        | http://localhost:8070/bff/ | Example OpenID Connect RP             
- Backend-for-Frontend (BFF) |
-| Gateway                    | 8050 (HTTP)                                                        | http://localhost:8050/     | Example API Gateway                   |
-| Postgresql                 | 55432                                                              | -                          | Database                              |
-| Mail                       | 1025 (SMTP), 1080 (HTTP)                                           | -                          | Mail Catcher                          |
-| Redis                      | 6379                                                               | -                          | Spring Session Cache Backend          |
-| Apache HTTPD               | 9080                                                               | http://localhost:9080/spa  | Web Server with SPA Example App       |
+| Service                    | Port(s)                                                            | URL                         | Purpose                                              |
+|----------------------------|--------------------------------------------------------------------|-----------------------------|------------------------------------------------------|
+| Keycloak                   | 9090 (HTTP), 9443 (HTTPS), 9000 (Management), 18787 (Remote Debug) | http://localhost:9090/auth/ | OAuth Authorization Server / OpenID Provider         |
+| API                        | 8090 (HTTP)                                                        | http://localhost:8090/      | Example API Resource Server                          |
+| Web                        | 8080 (HTTP)                                                        | http://localhost:8080/      | Example OpenID Connect RP Classic Web                
+| BFF                        | 8070 (HTTP)                                                        | http://localhost:8070/bff/  | Example OpenID Connect RP Backend-for-Frontend (BFF) |
+| Gateway                    | 8050 (HTTP)                                                        | http://localhost:8050/      | Example API Gateway                                  |
+| Postgresql                 | 55432                                                              | -                           | Database                                             |
+| Mail                       | 1025 (SMTP), 1080 (HTTP)                                           | http://localhost:1080/mail/ | Mail Catcher                                         |
+| Redis                      | 6379                                                               | -                           | Spring Session Cache Backend                         |
+| Apache HTTPD               | 9080                                                               | http://localhost:9080/spa/  | Web Server with SPA Example App                      |
 
 # Build
 
 Note: It is VERY important to build the environment first. Otherwise you might need to remove dangling files,
 e.g. `./keycloak/extensions/target/extensions.jar`.
-
 
 ```
 mvn clean verify
