@@ -5,10 +5,9 @@ Lab 201: Simulate OAuth Flows with OAuth.Tools
 
 We can use a publicly available Keycloak System to test various OAuth / OIDC Flows.
 
-> Public Keycloak Test instance
-> Link: https://lemur-6.cloud-iam.com/auth/realms/idt-training/account/
-> Username: demo
-> Password: <Ask instructor>
+> Public Keycloak Test instance link: https://lemur-6.cloud-iam.com/auth/realms/idt-training/account/  
+> Username: demo  
+> Password: `<Ask instructor>`
 
 Import the following configuration into [oauth.tools](https://oauth.tools).
 
