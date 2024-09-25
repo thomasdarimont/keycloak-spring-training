@@ -58,7 +58,7 @@ services:
       - ./keycloak/extensions/target/extensions.jar:/opt/keycloak/providers/extensions.jar:z
 
 # //LABS: Uncomment the following line for lab 401
-      - ./student/labs/lab401_keycloak_theme/lab:/opt/keycloak/themes/lab:z
+#      - ./student/labs/lab401_keycloak_theme/lab:/opt/keycloak/themes/lab:z
 
 # //LABS: Uncomment the following line for lab 402
 #      - ./student/labs/lab402_keycloak_extension/target/extensions-lab.jar:/opt/keycloak/providers/extensions-lab.jar:z
