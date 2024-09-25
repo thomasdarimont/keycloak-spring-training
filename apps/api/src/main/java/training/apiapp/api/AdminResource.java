@@ -1,5 +1,6 @@
 package training.apiapp.api;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,7 @@ class AdminResource {
                 entry("roles", auth.getAuthorities()), //
                 entry("time", Instant.now()) //
         );
+        LoggerFactory.getLogger(getClass()).info("Admin request: {}", payload);
         return ResponseEntity.ok(payload);
     }
 }
