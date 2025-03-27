@@ -15,14 +15,15 @@
     <properties>
 
         <!-- Dependencies -->
-        <keycloak.version>25.0.6</keycloak.version>
+        <keycloak.version>26.1.4</keycloak.version>
+        <keycloak-client.version>26.0.4</keycloak-client.version>
 
         <httpcomponents-httpclient.version>4.5.14</httpcomponents-httpclient.version>
 
         <!-- Testing -->
         <junit-jupiter.version>5.10.3</junit-jupiter.version>
         <assertj-core.version>3.26.3</assertj-core.version>
-        <testcontainers-keycloak.version>3.4.0</testcontainers-keycloak.version>
+        <testcontainers-keycloak.version>3.5.0</testcontainers-keycloak.version>
         <logback.version>1.5.6</logback.version>
 
         <!-- Tooling -->
@@ -115,7 +116,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-admin-client</artifactId>
-            <version>${keycloak.version}</version>
+            <version>${keycloak-client.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>

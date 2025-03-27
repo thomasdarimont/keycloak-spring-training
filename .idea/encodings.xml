@@ -11,5 +11,11 @@
     <file url="file://$PROJECT_DIR$/keycloak/extensions/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/lab301_spring_api_resource_server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/lab302_spring_web_oauth_client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/lab402_keycloak_extension/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/lab402_keycloak_extension/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/student/labs/src/main/resources" charset="UTF-8" />
   </component>
 </project>
