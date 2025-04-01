@@ -7,6 +7,10 @@ In this lab we want to customize the Keycloak login theme used by the `labs` rea
 
 Follow the instructions in this module marked with `//LABS:`.
 
+## Add path to lab theme
+
+See: [docker-compose-keycloak.yml](docker-compose-keycloak.yml) line: 61
+
 ## Restart Keycloak Environment
 > Restart Keycloak Environment.  
 > Run `java start.java` in the root of the project.
@@ -15,7 +19,7 @@ Follow the instructions in this module marked with `//LABS:`.
 
 Keycloak Admin Console: http://localhost:9090/auth
 
-Username: `admin`
+Username: `admin`  
 Password: `admin`
 
 ## Change Login Theme

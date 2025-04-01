@@ -11,13 +11,14 @@
     <properties>
 
         <!-- Maven -->
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependencies -->
-        <keycloak.version>25.0.6</keycloak.version>
+        <keycloak.version>26.1.4</keycloak.version>
+        <keycloak-client.version>26.0.4</keycloak-client.version>
 
         <resteasy.version>6.2.7.Final</resteasy.version>
         <httpcomponents-httpclient.version>4.5.14</httpcomponents-httpclient.version>
@@ -78,14 +79,6 @@
         </dependency>
 
         <dependency>
-            <!-- custom user storage -->
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-model-legacy</artifactId>
-            <version>${keycloak.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <!-- to ease debugging -->
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-model-infinispan</artifactId>
@@ -126,7 +119,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-admin-client</artifactId>
-            <version>${keycloak.version}</version>
+            <version>${keycloak-client.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
