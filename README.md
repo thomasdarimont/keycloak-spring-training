@@ -92,17 +92,18 @@ To further speed up the labs, you can optionally do the following:
 > Preload Docker images
 
 ```bash
-docker pull quay.io/keycloak/keycloak:25.0.6
+docker pull quay.io/keycloak/keycloak:26.1.4
 docker pull postgres:16.3
-docker pull quay.io/adorsys/keycloak-config-cli:latest-25
+docker pull quay.io/adorsys/keycloak-config-cli:latest-26
 docker pull maildev/maildev:2.1.0
 docker pull redis:6.2.6-alpine3.15
+docker pull httpd:2.4.51-bullseye
 ```
 
 > Prefill maven cache with Spring Boot 3.3 Artifacts  
 > To do so, download the
 >
-following [dummy spring app from the start.spring.io](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.3.0&packaging=jar&jvmVersion=21&groupId=com.example&artifactId=spring-keycloak-training-cache-warmer&name=spring-keycloak-training-cache-warmer&description=Demo%20project%20for%20Spring%20Boot&packageName=demo&dependencies=web,devtools,lombok,security,oauth2-client,oauth2-resource-server,session,actuator,thymeleaf,cloud-gateway)
+following [dummy spring app from the start.spring.io](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.4.4&packaging=jar&jvmVersion=21&groupId=com.example&artifactId=spring-keycloak-training-cache-warmer&name=spring-keycloak-training-cache-warmer&description=Demo%20project%20for%20Spring%20Boot&packageName=demo&dependencies=web,devtools,lombok,security,oauth2-client,oauth2-resource-server,session,actuator,thymeleaf,cloud-gateway,testcontainers)
 > Website.
 > Download and extract the project zip to some folder.
 > Then run `mvn clean verify -DskipTests` in the project directory.
