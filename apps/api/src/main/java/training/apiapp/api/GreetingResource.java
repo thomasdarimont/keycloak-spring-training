@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ class GreetingResource {
         var payload = Map.ofEntries( //
                 entry("message", "Hello " + auth.getName()), //
                 entry("user", auth.getName()), //
-                entry("roles", auth.getAuthorities()), //
+                entry("roles", auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList()), //
                 entry("time", Instant.now()) //
         );
         LoggerFactory.getLogger(getClass()).info("Greeting request: {}", payload);

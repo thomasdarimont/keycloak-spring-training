@@ -1,6 +1,9 @@
 spring:
   application:
     name: api
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
   security:
     oauth2:
       resourceserver:
@@ -16,3 +19,4 @@ training:
 
 server:
   port: 8090
+
