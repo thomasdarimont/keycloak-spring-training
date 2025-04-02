@@ -1,7 +1,10 @@
 :root {
     --background-color: #d6e2d4;
-    --button-color: #007f3d;
-    --logo-url: url("../img/jugsaxonyday24.png");
+    --button-color: #016b84;
+    --logo-url: url("https://www.javaland.eu/_assets/21d419d44498ff574c15c53ba467c474/Images/logo_javaland.png");
+
+    /*--logo-url: url("../img/jugsaxonyday24.png");*/
+    /*--button-color: #007f3d;*/
 
     /*--background-color: #ffa93b;*/
     /*--logo-url: url("../img/logo.svg");*/
@@ -19,6 +22,7 @@
 
 #kc-header-wrapper {
     text-transform: none;
+    color: var(--button-color);
 }
 
 .login-pf-page .login-pf-header h1 {
@@ -43,6 +47,6 @@ body {
     background-position: center top;
     background-repeat: no-repeat;
     background-size: auto 200px;
-    padding-top: 140px;
+    padding-top: 220px;
     margin-top: 30px;
 }
