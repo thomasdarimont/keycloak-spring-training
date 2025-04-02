@@ -187,9 +187,9 @@ users:
       locale: [ "en" ]
       salutation: [ "ms" ]
     credentials:
-      - type: support
+      - type: password
         userLabel: initial
-        value: test
+        value: support
         temporary: false
     realmRoles:
       - "user"
